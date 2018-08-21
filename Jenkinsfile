@@ -14,26 +14,10 @@ ansiColor('xterm') {
             sh "ls -l"
             sh "whoami"
         }
-
-        stage("Initialize the terraform with module and plugin")
+        stage("checking codestability")
         {
-            echo "Initializing the modules and plugin for terraform"
-            sh "cd ${params.Environment}_infra; terraform init"
+            tool name: 'mvn-3.5.4', type: 'maven'
+            sh "mvn clean compile"
         }
-
-        stage("Plan the infra with terraform")
-        {
-            echo "Planning the infra for ${params.Environment}"
-            sh "cd ${params.Environment}_infra; terraform plan -var region=${Region} -var profile=${Iam_Profile} -var database_password=${Database_Password}"
-
-            mail(to: 'abhishek.dubey@opstree.com',
-                subject: "${currentBuild.fullDisplayName} is ready for deployment",
-                body: "Please approve the URL for ${params.Environment}: ${env.BUILD_URL}input")
-
-            input message: 'Do you want to deploy terraform code?', submitterParameter: 'Action'
-        }
-
-
- 
     }
 }
