@@ -17,6 +17,7 @@ ansiColor('xterm') {
         stage("checking codestability")
         {
             tool name: 'mvn-3.5.4', type: 'maven' {
+                withEnv(['JAVA_HOME=${ tool \'java-8\' }', 'PATH+MAVEN=${tool \'mvn-3.5.4\'}/bin:${env.JAVA_HOME}/bin'])
                 sh "mvn compile"
             }
             
