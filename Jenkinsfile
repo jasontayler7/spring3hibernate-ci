@@ -16,8 +16,10 @@ ansiColor('xterm') {
         }
         stage("checking codestability")
         {
-            tool name: 'mvn-3.5.4', type: 'maven'
-            sh "mvn clean compile"
+            tool name: 'mvn-3.5.4', type: 'maven' {
+                sh "mvn compile"
+            }
+            
         }
     }
 }
