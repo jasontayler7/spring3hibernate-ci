@@ -21,7 +21,7 @@ ansiColor('xterm') {
                     pom "Spring3HibernateApp/pom.xml"
                     goals "clean compile"
                 }
-            }
+            
             
         }
     }
