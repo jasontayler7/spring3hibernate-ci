@@ -17,8 +17,10 @@ ansiColor('xterm') {
         stage("checking codestability")
         {
             
-                withEnv(['JAVA_HOME=${ tool \'java-8\' }', 'PATH+MAVEN=${tool \'mvn-3.5.4\'}/bin:${env.JAVA_HOME}/bin']) {
-                    sh "mvn compile"
+                maven {
+                    pom "Spring3HibernateApp/pom.xml"
+                    goals "clean compile"
+                }
             }
             
         }
