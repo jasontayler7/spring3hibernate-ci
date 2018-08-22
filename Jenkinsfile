@@ -18,7 +18,7 @@ ansiColor('xterm') {
         {
             
                 maven {
-                    maven "mvn-3.5.4"
+                    name"mvn-3.5.4"
                     pom "Spring3HibernateApp/pom.xml"
                     goals "clean compile"
                 }
