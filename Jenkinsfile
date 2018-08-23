@@ -5,7 +5,7 @@ ansiColor('xterm') {
         disableConcurrentBuilds(),
     ])
 
-    def config = [:]
+//    def config = [:]
     node ('Jenkins_Slave') {
      withMaven(
         maven: 'mvn-3.5.4',
