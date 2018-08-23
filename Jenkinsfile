@@ -29,7 +29,7 @@ ansiColor('xterm') {
             sh "cd Spring3HibernateApp/; mvn cobertura:cobertura; mvn install"
         }
 
-       stage("deploying war file to tomcat server and restarting the server") {
+       stage("deploying, restarting the server") {
             // Deployement on Tomcat server
             sh "cd Spring3HibernateApp/target/ ; cp Spring3HibernateApp.war /var/lib/tomcat8/webapps/ ; sudo service tomcat8 restart"
         }
