@@ -13,7 +13,7 @@ ansiColor('xterm') {
             sh "ls -l"
             sh "whoami"
         }
-        stage ("checking code stability")
+        stage ("checking code stability") {
         withMaven(
         // Maven installation declared in the Jenkins "Global Tool Configuration"
         maven: 'mvn-3.5.4',
