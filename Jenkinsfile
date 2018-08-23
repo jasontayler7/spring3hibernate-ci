@@ -14,16 +14,17 @@ ansiColor('xterm') {
             sh "whoami"
         }
         stage ("checking code stability") {
-        withMaven(
+            sh "cd Spring3HibernateApp/"
+            withMaven(
         // Maven installation declared in the Jenkins "Global Tool Configuration"
-        maven: 'mvn-3.5.4',
+            maven: 'mvn-3.5.4',
         // Maven settings.xml file defined with the Jenkins Config File Provider Plugin
         // Maven settings and global settings can also be defined in Jenkins Global Tools Configuration
-         ) {
+             ) {
  
       // Run the maven build
-      sh "mvn clean install"
-        }
+           sh "mvn clean install"
+           }
 //        stage("checking Code Stability") {
             // Run the maven compile
 //            sh "cd Spring3HibernateApp/; mvn compile"
