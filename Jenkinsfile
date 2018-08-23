@@ -7,30 +7,32 @@ ansiColor('xterm') {
 
     def config = [:]
     node {
-        stage("Checkout the latest code of Repo")
-        {
+        stage("Checkout the latest code of Repo") {
             checkout scm
             echo "Listing all repo content"
             sh "ls -l"
             sh "whoami"
         }
-        
-        stage("checking Code Stability") 
-        {
-      // Run the maven compile
-      sh "cd Spring3HibernateApp/; mvn compile"
+
+        stage("checking Code Stability") {
+            // Run the maven compile
+            sh "cd Spring3HibernateApp/; mvn compile"
         }
 
-        stage("checking Code Quality") 
-        {
-      // Run the maven findbugs and checkstyle
-      sh "cd Spring3HibernateApp/; mvn findbugs:findbugs; mvn checkstyle:checkstyle"
+        stage("checking Code Quality") {
+            // Run the maven findbugs and checkstyle
+            sh "cd Spring3HibernateApp/; mvn findbugs:findbugs; mvn checkstyle:checkstyle"
         }
 
-        stage("checking Code Analysis") 
-        {
-      // Run the maven findbugs and checkstyle
-      sh "cd Spring3HibernateApp/; mvn cobertura:cobertura; mvn install"
-        }    
+        stage("checking Code Analysis") {
+            // Run the maven findbugs and checkstyle
+            sh "cd Spring3HibernateApp/; mvn cobertura:cobertura; mvn install"
+        }
+
+       stage("deploying war file to tomcat server and restarting the server") {
+            // Deployement on Tomcat server
+            sh "cd Spring3HibernateApp/target/ ; cp Spring3HibernateApp.war /var/lib/tomcat8/webapps/ ; sudo service tomcat8 restart"
+        }
+
     }
 }
