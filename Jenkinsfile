@@ -6,7 +6,7 @@ ansiColor('xterm') {
     ])
 
     def config = [:]
-    node 'Jenkins_Slave' {
+    node ('Jenkins_Slave') {
      withMaven(
         maven: 'mvn-3.5.4',
         jdk: 'java-8'
