@@ -31,7 +31,7 @@ ansiColor('xterm') {
 
        stage("deploying, restarting the server") {
             // Deployement on Tomcat server
-            sh "cd Spring3HibernateApp/target/ ; cp Spring3HibernateApp.war /var/lib/tomcat8/webapps/ ; sudo service tomcat8 restart"
+            sh "cd Spring3HibernateApp/target/ ; sudo cp Spring3HibernateApp.war /var/lib/tomcat8/webapps/ ; sudo service tomcat8 restart"
         }
 
     }
