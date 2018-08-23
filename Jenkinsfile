@@ -14,19 +14,23 @@ ansiColor('xterm') {
             sh "ls -l"
             sh "whoami"
         }
+        
         stage("checking Code Stability") 
         {
       // Run the maven compile
       sh "cd Spring3HibernateApp/; mvn compile"
-        
-            
         }
+
         stage("checking Code Quality") 
         {
       // Run the maven findbugs and checkstyle
       sh "cd Spring3HibernateApp/; mvn findbugs:findbugs; mvn checkstyle:checkstyle"
-        
-            
+        }
+
+        stage("checking Code Analysis") 
+        {
+      // Run the maven findbugs and checkstyle
+      sh "cd Spring3HibernateApp/; mvn cobertura:cobertura; mvn install"
         }    
     }
 }
