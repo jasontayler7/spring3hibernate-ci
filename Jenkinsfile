@@ -1,3 +1,7 @@
+pipeline {
+    agent {
+    label 'Jenkins_Slave'
+  }
 ansiColor('xterm') {
     properties ([
         buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')),
@@ -44,4 +48,5 @@ ansiColor('xterm') {
 
     }
     }
+}
 }
