@@ -7,6 +7,9 @@ ansiColor('xterm') {
 
     def config = [:]
     node {
+     withMaven(
+        maven: 'mvn-3.5.4',
+        ) {
         stage("Checkout the latest code of Repo") {
             checkout scm
             echo "Listing all repo content"
@@ -15,30 +18,22 @@ ansiColor('xterm') {
         }
 
         stage ("checking code stability") {
-            withMaven(
-                maven: 'mvn-3.5.4',
-            ) {
                 // RUN the maven compile
             sh "cd Spring3HibernateApp/ ; mvn clean compile"
-            }
         }
 
         stage("checking Code Quality") {
-            withMaven (
-                maven: "mvn-3.5.4",
-            ) {
+        
                 // Run the maven findbugs and checkstyle
             sh "cd Spring3HibernateApp/; mvn findbugs:findbugs; mvn checkstyle:checkstyle"
-            }
+            
         }
 
         stage("checking Code Analysis") {
-            withMaven (
-                maven: "mvn-3.5.4",
-            ) {
+ 
             // Run the maven findbugs and checkstyle
             sh "cd Spring3HibernateApp/; mvn cobertura:cobertura; mvn install"
-            }
+            
         }
 
        stage("deploying, restarting the server") {
@@ -46,5 +41,6 @@ ansiColor('xterm') {
             sh "cd Spring3HibernateApp/target/ ; sudo cp Spring3HibernateApp.war /var/lib/tomcat8/webapps/ ; sudo service tomcat8 restart"
         }
 
+    }
     }
 }
