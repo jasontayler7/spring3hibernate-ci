@@ -16,10 +16,17 @@ ansiColor('xterm') {
         }
         stage("checking Code Stability") 
         {
-      // Run the maven build
-      sh "cd Spring3HibernateApp/; mvn clean compile"
+      // Run the maven compile
+      sh "cd Spring3HibernateApp/; mvn compile"
         
             
         }
+        stage("checking Code Quality") 
+        {
+      // Run the maven findbugs and checkstyle
+      sh "cd Spring3HibernateApp/; mvn findbugs:findbugs; mvn checkstyle:checkstyle"
+        
+            
+        }    
     }
 }
