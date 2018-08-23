@@ -17,7 +17,7 @@ ansiColor('xterm') {
         stage("checking Code Stability") 
         {
       // Run the maven build
-      cd Spring3HibernateApp; sh "mvn clean compile"
+      sh "cd Spring3HibernateApp/; mvn clean compile"
         
             
         }
