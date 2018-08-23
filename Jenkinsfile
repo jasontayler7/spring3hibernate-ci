@@ -17,7 +17,6 @@ ansiColor('xterm') {
         stage ("checking code stability") {
             withMaven(
                 maven: 'mvn-3.5.4',
-                jdk: "java-8"
             ) {
                 // RUN the maven compile
             sh "cd Spring3HibernateApp/ ; mvn clean compile"
@@ -27,7 +26,6 @@ ansiColor('xterm') {
         stage("checking Code Quality") {
             withMaven (
                 maven: "mvn-3.5.4",
-                jdk: "java-8"
             ) {
                 // Run the maven findbugs and checkstyle
             sh "cd Spring3HibernateApp/; mvn findbugs:findbugs; mvn checkstyle:checkstyle"
@@ -37,7 +35,6 @@ ansiColor('xterm') {
         stage("checking Code Analysis") {
             withMaven (
                 maven: "mvn-3.5.4",
-                jdk: "java-8"
             ) {
             // Run the maven findbugs and checkstyle
             sh "cd Spring3HibernateApp/; mvn cobertura:cobertura; mvn install"
