@@ -9,6 +9,7 @@ ansiColor('xterm') {
     node {
      withMaven(
         maven: 'mvn-3.5.4',
+        jdk: 'java-8'
         ) {
         stage("Checkout the latest code of Repo") {
             checkout scm
@@ -18,13 +19,11 @@ ansiColor('xterm') {
         }
 
         stage ("checking code stability") {
-            jdk = tool name: 'java-8'
                 // RUN the maven compile
             sh "cd Spring3HibernateApp/ ; mvn clean compile"
         }
 
         stage("checking Code Quality") {
-            jdk = tool name: 'java-8'
         
                 // Run the maven findbugs and checkstyle
             sh "cd Spring3HibernateApp/; mvn findbugs:findbugs; mvn checkstyle:checkstyle"
@@ -32,7 +31,6 @@ ansiColor('xterm') {
         }
 
         stage("checking Code Analysis") {
-            jdk = tool name: 'java-8'
  
             // Run the maven findbugs and checkstyle
             sh "cd Spring3HibernateApp/; mvn cobertura:cobertura; mvn install"
